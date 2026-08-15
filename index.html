@@ -346,6 +346,7 @@
   .swatch[data-color="blanco"]{background:#FAF7F1;}
   .swatch[data-color="dorado"]{background:linear-gradient(135deg,#E7CE87,#C9A227);}
   .swatch[data-color="negro"]{background:#141210;}
+  .swatch[data-color="gris"]{background:#9CA3AF;}
 
   .sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
   .size-btn{
@@ -961,11 +962,11 @@ const CATEGORY_LABEL = {
   ar:{camisas:'قمصان',trajes:'بدلات',accesorios:'إكسسوارات',zapatos:'أحذية'}
 };
 const COLOR_LABELS = {
-  es:{azul:'Azul real',blanco:'Blanco',dorado:'Dorado',negro:'Negro'},
-  en:{azul:'Royal blue',blanco:'White',dorado:'Gold',negro:'Black'},
-  fr:{azul:'Bleu royal',blanco:'Blanc',dorado:'Doré',negro:'Noir'},
-  it:{azul:'Blu reale',blanco:'Bianco',dorado:'Oro',negro:'Nero'},
-  ar:{azul:'أزرق ملكي',blanco:'أبيض',dorado:'ذهبي',negro:'أسود'}
+  es:{azul:'Azul real',blanco:'Blanco',dorado:'Dorado',negro:'Negro',gris:'Gris'},
+  en:{azul:'Royal blue',blanco:'White',dorado:'Gold',negro:'Black',gris:'Gray'},
+  fr:{azul:'Bleu royal',blanco:'Blanc',dorado:'Doré',negro:'Noir',gris:'Gris'},
+  it:{azul:'Blu reale',blanco:'Bianco',dorado:'Oro',negro:'Nero',gris:'Grigio'},
+  ar:{azul:'أزرق ملكي',blanco:'أبيض',dorado:'ذهبي',negro:'أسود',gris:'رمادي'}
 };
 const MARQUEE_WORDS = {
   es:['AZUL','BLANCO','DORADO','NEGRO'], en:['BLUE','WHITE','GOLD','BLACK'],
@@ -976,7 +977,7 @@ function COLOR_LABEL_OF(c){ return COLOR_LABELS[LANG][c]; }
 
 /* ============== DATOS DE PRODUCTOS (multilenguaje) ============== */
 const PRODUCTS = [
-  { id:'zap-00', cat:'zapatos', price:480, fixedPrice:true, img:'https://i.imgur.com/hQKDY0w.png', colors:['blanco','negro'], sizes:['40','41','42','43','44'],
+  { id:'zap-00', cat:'zapatos', price:480, fixedPrice:true, img:'https://i.imgur.com/wZVFp1f.png', colors:['blanco','negro','gris'], sizes:['40','41','42','43','44'],
     name:{es:'Zapatilla Adidas Campus Chunky – Blanco/Negro',en:'Adidas Campus Chunky Sneaker – White/Black',fr:'Adidas Campus Chunky – Blanc/Noir',it:'Adidas Campus Chunky – Bianco/Nero',ar:'حذاء أديداس كامبوس تشانكي – أبيض/أسود'},
     desc:{es:'Zapatilla Adidas Campus Chunky en blanco y negro, suela gruesa de estilo retro y agarre resistente. Un icónico streetwear con actitud urbana.',
       en:'Adidas Campus Chunky sneaker in white and black, chunky retro-style sole and durable grip. An iconic streetwear silhouette with everyday attitude.',
