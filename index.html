@@ -976,6 +976,14 @@ function COLOR_LABEL_OF(c){ return COLOR_LABELS[LANG][c]; }
 
 /* ============== DATOS DE PRODUCTOS (multilenguaje) ============== */
 const PRODUCTS = [
+  { id:'zap-00', cat:'zapatos', price:480, fixedPrice:true, img:'https://i.imgur.com/hQKDY0w.png', colors:['blanco','negro'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Adidas Campus Chunky – Blanco/Negro',en:'Adidas Campus Chunky Sneaker – White/Black',fr:'Adidas Campus Chunky – Blanc/Noir',it:'Adidas Campus Chunky – Bianco/Nero',ar:'حذاء أديداس كامبوس تشانكي – أبيض/أسود'},
+    desc:{es:'Zapatilla Adidas Campus Chunky en blanco y negro, suela gruesa de estilo retro y agarre resistente. Un icónico streetwear con actitud urbana.',
+      en:'Adidas Campus Chunky sneaker in white and black, chunky retro-style sole and durable grip. An iconic streetwear silhouette with everyday attitude.',
+      fr:"Sneaker Adidas Campus Chunky en blanc et noir, semelle épaisse au style rétro et bonne accroche. Une silhouette streetwear iconique à l'allure urbaine.",
+      it:'Sneaker Adidas Campus Chunky bianca e nera, suola chunky in stile retrò e ottima aderenza. Una silhouette streetwear iconica dallo stile urbano.',
+      ar:'حذاء أديداس كامبوس تشانكي بلونين أبيض وأسود، بنعل سميك بطراز ريترو وقبضة متينة. تصميم ستريت وير مميز بروح عصرية.'},
+    tag:{es:'Streetwear',en:'Streetwear',fr:'Streetwear',it:'Streetwear',ar:'ستريت وير'} },
   { id:'cam-01', cat:'camisas', price:480, img:'https://i.imgur.com/uAZv3rG.png', colors:['blanco','azul','dorado'], sizes:['S','M','L','XL','XXL'],
     name:{es:'Camisa Blanca Algodón Real',en:'White Royal Cotton Shirt',fr:'Chemise Blanche Coton Royal',it:'Camicia Bianca Cotone Reale',ar:'قميص أبيض قطن ملكي'},
     desc:{es:'Camisa en algodón egipcio de tacto suave, cuello mandarín bordado a mano con hilo dorado. Corte moderno que combina con traje o de manera informal.',
@@ -1104,7 +1112,7 @@ function buildCatalog(base, total){
         base:p,
         editionIdx, num,
         isNew: n % 6 === 0,
-        price: Math.max(150, p.price + priceJitter),
+        price: p.fixedPrice ? p.price : Math.max(150, p.price + priceJitter),
         img:p.img,
         colors:p.colors,
         sizes:p.sizes
