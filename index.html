@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -479,6 +479,19 @@
   .call-float:hover{background:var(--navy);color:var(--gold-light);border-color:var(--navy);transform:scale(1.08);}
   @media (prefers-reduced-motion: reduce){.whatsapp-float{animation:none;}}
 
+  /* ---------- TOAST DE CONFIRMACIÓN ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);
+    background:var(--navy-deep);color:var(--ivory);
+    border:1px solid var(--gold);padding:14px 24px;
+    font-size:.86rem;letter-spacing:.02em;
+    box-shadow:0 16px 40px rgba(0,0,0,.3);
+    z-index:400;max-width:90vw;text-align:center;
+    opacity:0;pointer-events:none;transition:all .35s ease;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0);}
+  @media (max-width:560px){ .toast{bottom:150px;} }
+
   /* ---------- FORMULARIO WHATSAPP (avanzado 2026) ---------- */
   .wa-overlay{
     position:fixed;inset:0;background:rgba(8,21,39,.45);z-index:289;
@@ -510,6 +523,11 @@
     font-family:inherit;font-size:.9rem;margin-bottom:14px;resize:vertical;
   }
   .wa-form-body input:focus,.wa-form-body textarea:focus{outline:none;border-color:#25D366;}
+  .wa-form-error{
+    display:none;color:#D64545;font-size:.76rem;margin:-8px 0 12px;
+  }
+  .wa-form-error.show{display:block;}
+  .input-error{border-color:#D64545 !important;}
   .wa-form-send{
     width:100%;padding:13px;background:#25D366;color:#fff;border-radius:6px;
     display:flex;align-items:center;justify-content:center;gap:8px;
@@ -619,12 +637,12 @@
       <div class="nav-right">
         <div class="lang-switch" id="langSwitch">
           <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
-            <span class="flag" id="langFlag">🇲🇦</span><span id="langCode">AR</span><span class="chev">▾</span>
+            <span class="flag" id="langFlag">🇫🇷</span><span id="langCode">FR</span><span class="chev">▾</span>
           </button>
           <div class="lang-menu" id="langMenu" role="menu">
+            <button class="lang-opt" data-lang="fr" role="menuitem"><span class="flag">🇫🇷</span> Français</button>
             <button class="lang-opt" data-lang="ar" role="menuitem"><span class="flag">🇲🇦</span> العربية</button>
             <button class="lang-opt" data-lang="es" role="menuitem"><span class="flag">🇪🇸</span> Español</button>
-            <button class="lang-opt" data-lang="fr" role="menuitem"><span class="flag">🇫🇷</span> Français</button>
             <button class="lang-opt" data-lang="en" role="menuitem"><span class="flag">🇬🇧</span> English</button>
             <button class="lang-opt" data-lang="it" role="menuitem"><span class="flag">🇮🇹</span> Italiano</button>
           </div>
@@ -806,6 +824,7 @@
     <input type="text" id="waName" data-i18n-placeholder="wa.namePh" placeholder="Ej: Ahmed">
     <label data-i18n="wa.msgLabel">Mensaje</label>
     <textarea id="waMessage" rows="3" data-i18n-placeholder="wa.msgPh" placeholder="Quiero más información sobre…"></textarea>
+    <p class="wa-form-error" id="waFormError"></p>
     <button class="wa-form-send" id="waFormSend">
       <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2a10 10 0 0 0-8.6 15.05L2 22l5.1-1.34A10 10 0 1 0 12 2zm0 18.2a8.16 8.16 0 0 1-4.17-1.14l-.3-.18-3.03.8.81-2.95-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
       <span data-i18n="wa.send">Enviar por WhatsApp</span>
@@ -830,9 +849,11 @@
   </div>
 </aside>
 
+<div class="toast" id="toast"></div>
+
 <script>
 /* ============== IDIOMAS ============== */
-let LANG = 'ar'; // árabe = idioma oficial por defecto
+let LANG = 'fr'; // francés = idioma por defecto
 const RTL_LANGS = ['ar'];
 const FLAGS = {ar:'🇲🇦', es:'🇪🇸', fr:'🇫🇷', en:'🇬🇧', it:'🇮🇹'};
 
@@ -854,11 +875,11 @@ const I18N = {
     'resenas.role1':'Cliente habitual','resenas.role2':'Nuevo cliente','resenas.verified':'Verificado',
     'contact.eyebrow':'Contacto','contact.title':'Hablemos','contact.phone':'Teléfono','contact.email':'Email','contact.address':'Dirección',
     'footer.rights':'© 2026 Moul El Hwayej. Todos los derechos reservados.','footer.credit':'Creado por Hero Marketing Digital 360',
-    'cart.title':'Tu carrito','cart.empty':'Tu carrito está vacío.','cart.subtotal':'Subtotal','cart.checkout':'Finalizar por WhatsApp','cart.note':'Confirmamos disponibilidad y envío por WhatsApp antes del pago.',
+    'cart.title':'Tu carrito','cart.empty':'Tu carrito está vacío.','cart.subtotal':'Subtotal','cart.checkout':'Finalizar por WhatsApp','cart.note':'Confirmamos disponibilidad y envío por WhatsApp antes del pago.','cart.orderSent':'✓ Pedido enviado por WhatsApp. ¡Gracias por tu compra!',
     'ui.color':'Color','ui.size':'Talla','ui.chooseSize':'Elegí una talla','ui.addToCart':'Añadir al carrito','ui.added':'Añadido ✓',
     'ui.results':'productos encontrados','ui.showing':'Mostrando','ui.of':'de','ui.noMore':'No hay más productos','ui.noResults':'No se encontraron productos con ese criterio.',
     'ui.colorSize':'Color: {color} · Talla: {size}','ui.orderIntro':'Hola Moul El Hwayej, quiero hacer este pedido:','ui.qty':'Cant','ui.remove':'Quitar','ui.uniqueSize':'Talla única',
-    'wa.title':'Escribinos por WhatsApp','wa.subtitle':'Respondemos en minutos','wa.nameLabel':'Tu nombre','wa.namePh':'Ej: Ahmed','wa.msgLabel':'Mensaje','wa.msgPh':'Quiero más información sobre…','wa.send':'Enviar por WhatsApp'
+    'wa.title':'Escribinos por WhatsApp','wa.subtitle':'Respondemos en minutos','wa.nameLabel':'Tu nombre','wa.namePh':'Ej: Ahmed','wa.msgLabel':'Mensaje','wa.msgPh':'Quiero más información sobre…','wa.send':'Enviar por WhatsApp','wa.errorEmpty':'Escribí tu nombre o un mensaje antes de enviar.'
   },
   en:{ 'nav.coleccion':'Collection','nav.nosotros':'About','nav.resenas':'Reviews','nav.contacto':'Contact','nav.cart':'Cart',
     'hero.eyebrow':'2026 Collection · Kenitra, Morocco','hero.h1':'Menswear with<br>a <em>royal</em> identity',
@@ -877,11 +898,11 @@ const I18N = {
     'resenas.role1':'Regular customer','resenas.role2':'New customer','resenas.verified':'Verified',
     'contact.eyebrow':'Contact','contact.title':'Let\'s talk','contact.phone':'Phone','contact.email':'Email','contact.address':'Address',
     'footer.rights':'© 2026 Moul El Hwayej. All rights reserved.','footer.credit':'Built by Hero Marketing Digital 360',
-    'cart.title':'Your cart','cart.empty':'Your cart is empty.','cart.subtotal':'Subtotal','cart.checkout':'Checkout on WhatsApp','cart.note':'We confirm availability and shipping via WhatsApp before payment.',
+    'cart.title':'Your cart','cart.empty':'Your cart is empty.','cart.subtotal':'Subtotal','cart.checkout':'Checkout on WhatsApp','cart.note':'We confirm availability and shipping via WhatsApp before payment.','cart.orderSent':'✓ Order sent via WhatsApp. Thank you for your purchase!',
     'ui.color':'Color','ui.size':'Size','ui.chooseSize':'Choose a size','ui.addToCart':'Add to cart','ui.added':'Added ✓',
     'ui.results':'products found','ui.showing':'Showing','ui.of':'of','ui.noMore':'No more products','ui.noResults':'No products found for that search.',
     'ui.colorSize':'Color: {color} · Size: {size}','ui.orderIntro':'Hello Moul El Hwayej, I would like to order:','ui.qty':'Qty','ui.remove':'Remove','ui.uniqueSize':'One size',
-    'wa.title':'Chat with us on WhatsApp','wa.subtitle':'We reply within minutes','wa.nameLabel':'Your name','wa.namePh':'E.g. Ahmed','wa.msgLabel':'Message','wa.msgPh':'I would like more information about…','wa.send':'Send via WhatsApp'
+    'wa.title':'Chat with us on WhatsApp','wa.subtitle':'We reply within minutes','wa.nameLabel':'Your name','wa.namePh':'E.g. Ahmed','wa.msgLabel':'Message','wa.msgPh':'I would like more information about…','wa.send':'Send via WhatsApp','wa.errorEmpty':'Please enter your name or a message before sending.'
   },
   fr:{ 'nav.coleccion':'Collection','nav.nosotros':'À propos','nav.resenas':'Avis','nav.contacto':'Contact','nav.cart':'Panier',
     'hero.eyebrow':'Collection 2026 · Kenitra, Maroc','hero.h1':'Élégance masculine<br>à l\'identité <em>royale</em>',
@@ -900,11 +921,11 @@ const I18N = {
     'resenas.role1':'Client fidèle','resenas.role2':'Nouveau client','resenas.verified':'Vérifié',
     'contact.eyebrow':'Contact','contact.title':'Parlons-en','contact.phone':'Téléphone','contact.email':'E-mail','contact.address':'Adresse',
     'footer.rights':'© 2026 Moul El Hwayej. Tous droits réservés.','footer.credit':'Créé par Hero Marketing Digital 360',
-    'cart.title':'Votre panier','cart.empty':'Votre panier est vide.','cart.subtotal':'Sous-total','cart.checkout':'Commander via WhatsApp','cart.note':'Nous confirmons disponibilité et livraison par WhatsApp avant le paiement.',
+    'cart.title':'Votre panier','cart.empty':'Votre panier est vide.','cart.subtotal':'Sous-total','cart.checkout':'Commander via WhatsApp','cart.note':'Nous confirmons disponibilité et livraison par WhatsApp avant le paiement.','cart.orderSent':'✓ Commande envoyée via WhatsApp. Merci pour votre achat !',
     'ui.color':'Couleur','ui.size':'Taille','ui.chooseSize':'Choisissez une taille','ui.addToCart':'Ajouter au panier','ui.added':'Ajouté ✓',
     'ui.results':'produits trouvés','ui.showing':'Affichage de','ui.of':'sur','ui.noMore':'Plus aucun produit','ui.noResults':'Aucun produit trouvé pour cette recherche.',
     'ui.colorSize':'Couleur : {color} · Taille : {size}','ui.orderIntro':'Bonjour Moul El Hwayej, je souhaite commander :','ui.qty':'Qté','ui.remove':'Retirer','ui.uniqueSize':'Taille unique',
-    'wa.title':'Écrivez-nous sur WhatsApp','wa.subtitle':'Réponse en quelques minutes','wa.nameLabel':'Votre nom','wa.namePh':'Ex : Ahmed','wa.msgLabel':'Message','wa.msgPh':'Je voudrais plus d\'informations sur…','wa.send':'Envoyer via WhatsApp'
+    'wa.title':'Écrivez-nous sur WhatsApp','wa.subtitle':'Réponse en quelques minutes','wa.nameLabel':'Votre nom','wa.namePh':'Ex : Ahmed','wa.msgLabel':'Message','wa.msgPh':'Je voudrais plus d\'informations sur…','wa.send':'Envoyer via WhatsApp','wa.errorEmpty':'Merci de saisir votre nom ou un message avant d\'envoyer.'
   },
   it:{ 'nav.coleccion':'Collezione','nav.nosotros':'Chi siamo','nav.resenas':'Recensioni','nav.contacto':'Contatti','nav.cart':'Carrello',
     'hero.eyebrow':'Collezione 2026 · Kenitra, Marocco','hero.h1':'Eleganza maschile<br>dall\'identità <em>reale</em>',
@@ -923,11 +944,11 @@ const I18N = {
     'resenas.role1':'Cliente abituale','resenas.role2':'Nuovo cliente','resenas.verified':'Verificato',
     'contact.eyebrow':'Contatti','contact.title':'Parliamone','contact.phone':'Telefono','contact.email':'Email','contact.address':'Indirizzo',
     'footer.rights':'© 2026 Moul El Hwayej. Tutti i diritti riservati.','footer.credit':'Realizzato da Hero Marketing Digital 360',
-    'cart.title':'Il tuo carrello','cart.empty':'Il tuo carrello è vuoto.','cart.subtotal':'Totale parziale','cart.checkout':'Concludi su WhatsApp','cart.note':'Confermiamo disponibilità e spedizione via WhatsApp prima del pagamento.',
+    'cart.title':'Il tuo carrello','cart.empty':'Il tuo carrello è vuoto.','cart.subtotal':'Totale parziale','cart.checkout':'Concludi su WhatsApp','cart.note':'Confermiamo disponibilità e spedizione via WhatsApp prima del pagamento.','cart.orderSent':'✓ Ordine inviato via WhatsApp. Grazie per il tuo acquisto!',
     'ui.color':'Colore','ui.size':'Taglia','ui.chooseSize':'Scegli una taglia','ui.addToCart':'Aggiungi al carrello','ui.added':'Aggiunto ✓',
     'ui.results':'prodotti trovati','ui.showing':'Visualizzati','ui.of':'di','ui.noMore':'Nessun altro prodotto','ui.noResults':'Nessun prodotto trovato per questa ricerca.',
     'ui.colorSize':'Colore: {color} · Taglia: {size}','ui.orderIntro':'Ciao Moul El Hwayej, vorrei ordinare:','ui.qty':'Qtà','ui.remove':'Rimuovi','ui.uniqueSize':'Taglia unica',
-    'wa.title':'Scrivici su WhatsApp','wa.subtitle':'Rispondiamo in pochi minuti','wa.nameLabel':'Il tuo nome','wa.namePh':'Es: Ahmed','wa.msgLabel':'Messaggio','wa.msgPh':'Vorrei maggiori informazioni su…','wa.send':'Invia via WhatsApp'
+    'wa.title':'Scrivici su WhatsApp','wa.subtitle':'Rispondiamo in pochi minuti','wa.nameLabel':'Il tuo nome','wa.namePh':'Es: Ahmed','wa.msgLabel':'Messaggio','wa.msgPh':'Vorrei maggiori informazioni su…','wa.send':'Invia via WhatsApp','wa.errorEmpty':'Inserisci il tuo nome o un messaggio prima di inviare.'
   },
   ar:{ 'nav.coleccion':'المجموعة','nav.nosotros':'من نحن','nav.resenas':'آراء العملاء','nav.contacto':'تواصل معنا','nav.cart':'السلة',
     'hero.eyebrow':'مجموعة 2026 · القنيطرة، المغرب','hero.h1':'أناقة رجالية<br>بهوية <em>ملكية</em>',
@@ -946,11 +967,11 @@ const I18N = {
     'resenas.role1':'عميل دائم','resenas.role2':'عميل جديد','resenas.verified':'موثّق',
     'contact.eyebrow':'تواصل معنا','contact.title':'لنتحدث','contact.phone':'الهاتف','contact.email':'البريد الإلكتروني','contact.address':'العنوان',
     'footer.rights':'© 2026 مول الحوايج. جميع الحقوق محفوظة.','footer.credit':'تصميم وتطوير: Hero Marketing Digital 360',
-    'cart.title':'سلتك','cart.empty':'سلتك فارغة.','cart.subtotal':'المجموع الفرعي','cart.checkout':'إتمام الطلب عبر واتساب','cart.note':'نؤكد التوفر والتوصيل عبر واتساب قبل الدفع.',
+    'cart.title':'سلتك','cart.empty':'سلتك فارغة.','cart.subtotal':'المجموع الفرعي','cart.checkout':'إتمام الطلب عبر واتساب','cart.note':'نؤكد التوفر والتوصيل عبر واتساب قبل الدفع.','cart.orderSent':'✓ تم إرسال طلبك عبر واتساب. شكرًا لثقتك بنا!',
     'ui.color':'اللون','ui.size':'المقاس','ui.chooseSize':'اختر مقاسًا','ui.addToCart':'أضف إلى السلة','ui.added':'تمت الإضافة ✓',
     'ui.results':'منتج تم العثور عليه','ui.showing':'عرض','ui.of':'من','ui.noMore':'لا مزيد من المنتجات','ui.noResults':'لم يتم العثور على منتجات مطابقة.',
     'ui.colorSize':'اللون: {color} · المقاس: {size}','ui.orderIntro':'مرحبًا مول الحوايج، أرغب في طلب:','ui.qty':'الكمية','ui.remove':'إزالة','ui.uniqueSize':'مقاس واحد',
-    'wa.title':'راسلنا عبر واتساب','wa.subtitle':'نرد خلال دقائق','wa.nameLabel':'اسمك','wa.namePh':'مثال: أحمد','wa.msgLabel':'رسالتك','wa.msgPh':'أرغب في معرفة المزيد عن…','wa.send':'إرسال عبر واتساب'
+    'wa.title':'راسلنا عبر واتساب','wa.subtitle':'نرد خلال دقائق','wa.nameLabel':'اسمك','wa.namePh':'مثال: أحمد','wa.msgLabel':'رسالتك','wa.msgPh':'أرغب في معرفة المزيد عن…','wa.send':'إرسال عبر واتساب','wa.errorEmpty':'الرجاء كتابة اسمك أو رسالة قبل الإرسال.'
   }
 };
 
@@ -1136,6 +1157,17 @@ function localized(p){
 
 /* ============== ESTADO ============== */
 let cart = []; // {productId, name, price, img, color, size, qty}
+const CART_KEY = 'moulElHwayej_cart_v1';
+function saveCart(){
+  try{ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }catch(e){ /* almacenamiento no disponible, sigue en memoria */ }
+}
+function loadCart(){
+  try{
+    const raw = localStorage.getItem(CART_KEY);
+    if(raw) cart = JSON.parse(raw) || [];
+  }catch(e){ cart = []; }
+}
+loadCart();
 const state = {}; // seleccion de color/talla por producto
 CATALOG.forEach(p=>{ state[p.id] = {color:p.colors[0], size:null}; });
 
@@ -1259,6 +1291,7 @@ grid.addEventListener('click', (e)=>{
     else{
       cart.push({productId:p.id, name:L.name, price:p.price, img:p.img, color:sel.color, size:sel.size, qty:1});
     }
+    saveCart();
     renderCart();
     addBtn.textContent = t('ui.added');
     addBtn.classList.add('added');
@@ -1327,6 +1360,7 @@ drawerItems.addEventListener('click', (e)=>{
   if(action==='inc') cart[idx].qty++;
   if(action==='dec'){ cart[idx].qty--; if(cart[idx].qty<=0) cart.splice(idx,1); }
   if(action==='rm') cart.splice(idx,1);
+  saveCart();
   renderCart();
 });
 
@@ -1337,7 +1371,22 @@ document.getElementById('checkoutBtn').addEventListener('click', ()=>{
   const subtotal = cart.reduce((a,i)=>a + i.price*i.qty, 0);
   const msg = `${t('ui.orderIntro')}\n\n${lines.join('\n')}\n\n${t('cart.subtotal')}: ${subtotal} MAD`;
   window.open(`https://wa.me/212666662509?text=${encodeURIComponent(msg)}`, '_blank');
+  cart = [];
+  saveCart();
+  renderCart();
+  closeDrawer();
+  showToast(t('cart.orderSent'));
 });
+
+/* ============== TOAST DE CONFIRMACIÓN ============== */
+const toastEl = document.getElementById('toast');
+let toastTimer;
+function showToast(message){
+  toastEl.textContent = message;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> toastEl.classList.remove('show'), 4000);
+}
 
 /* ============== MARQUEE (paleta de marca) ============== */
 const track = document.getElementById('marqueeTrack');
@@ -1386,7 +1435,7 @@ langMenu.addEventListener('click', (e)=>{
   applyLanguage(opt.dataset.lang);
   langSwitch.classList.remove('open');
 });
-applyLanguage('ar');
+applyLanguage('fr');
 
 /* ============== FORMULARIO FLOTANTE DE WHATSAPP ============== */
 const waFloatBtn = document.getElementById('waFloatBtn');
@@ -1410,13 +1459,29 @@ waFormClose.addEventListener('click', closeWaForm);
 waOverlay.addEventListener('click', closeWaForm);
 
 waFormSend.addEventListener('click', ()=>{
-  const name = document.getElementById('waName').value.trim();
-  const message = document.getElementById('waMessage').value.trim();
+  const nameInput = document.getElementById('waName');
+  const msgInput = document.getElementById('waMessage');
+  const name = nameInput.value.trim();
+  const message = msgInput.value.trim();
+
+  if(!name && !message){
+    const errEl = document.getElementById('waFormError');
+    errEl.textContent = t('wa.errorEmpty');
+    errEl.classList.add('show');
+    msgInput.classList.add('input-error');
+    msgInput.focus();
+    setTimeout(()=> msgInput.classList.remove('input-error'), 1200);
+    return;
+  }
+  document.getElementById('waFormError').classList.remove('show');
+
   const parts = [t('ui.orderIntro').replace(/:$/,'')];
   if(name) parts.push(`${t('wa.nameLabel')}: ${name}`);
   parts.push(message || t('wa.msgPh'));
   const text = parts.join('\n');
   window.open(`https://wa.me/212666662509?text=${encodeURIComponent(text)}`, '_blank');
+  nameInput.value = '';
+  msgInput.value = '';
   closeWaForm();
 });
 
