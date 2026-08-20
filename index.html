@@ -347,6 +347,8 @@
   .swatch[data-color="dorado"]{background:linear-gradient(135deg,#E7CE87,#C9A227);}
   .swatch[data-color="negro"]{background:#141210;}
   .swatch[data-color="gris"]{background:#9CA3AF;}
+  .swatch[data-color="plata"]{background:linear-gradient(135deg,#E8EAF0,#B8BCC8);}
+  .swatch[data-color="beige"]{background:#D8C7A1;}
 
   .sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
   .size-btn{
@@ -983,11 +985,11 @@ const CATEGORY_LABEL = {
   ar:{camisas:'قمصان',trajes:'بدلات',accesorios:'إكسسوارات',zapatos:'أحذية'}
 };
 const COLOR_LABELS = {
-  es:{azul:'Azul real',blanco:'Blanco',dorado:'Dorado',negro:'Negro',gris:'Gris'},
-  en:{azul:'Royal blue',blanco:'White',dorado:'Gold',negro:'Black',gris:'Gray'},
-  fr:{azul:'Bleu royal',blanco:'Blanc',dorado:'Doré',negro:'Noir',gris:'Gris'},
-  it:{azul:'Blu reale',blanco:'Bianco',dorado:'Oro',negro:'Nero',gris:'Grigio'},
-  ar:{azul:'أزرق ملكي',blanco:'أبيض',dorado:'ذهبي',negro:'أسود',gris:'رمادي'}
+  es:{azul:'Azul real',blanco:'Blanco',dorado:'Dorado',negro:'Negro',gris:'Gris',plata:'Plata',beige:'Beige'},
+  en:{azul:'Royal blue',blanco:'White',dorado:'Gold',negro:'Black',gris:'Gray',plata:'Silver',beige:'Beige'},
+  fr:{azul:'Bleu royal',blanco:'Blanc',dorado:'Doré',negro:'Noir',gris:'Gris',plata:'Argent',beige:'Beige'},
+  it:{azul:'Blu reale',blanco:'Bianco',dorado:'Oro',negro:'Nero',gris:'Grigio',plata:'Argento',beige:'Beige'},
+  ar:{azul:'أزرق ملكي',blanco:'أبيض',dorado:'ذهبي',negro:'أسود',gris:'رمادي',plata:'فضي',beige:'بيج'}
 };
 const MARQUEE_WORDS = {
   es:['AZUL','BLANCO','DORADO','NEGRO'], en:['BLUE','WHITE','GOLD','BLACK'],
@@ -998,7 +1000,7 @@ function COLOR_LABEL_OF(c){ return COLOR_LABELS[LANG][c]; }
 
 /* ============== DATOS DE PRODUCTOS (multilenguaje) ============== */
 const PRODUCTS = [
-  { id:'zap-00', cat:'zapatos', price:480, fixedPrice:true, img:'https://i.imgur.com/wZVFp1f.png', colors:['blanco','negro','gris'], sizes:['40','41','42','43','44'],
+  { id:'zap-00', cat:'zapatos', price:480, fixedPrice:true, img:'https://i.imgur.com/wZVFp1f.png', colors:['blanco'], sizes:['40','41','42','43','44'],
     name:{es:'Zapatilla Adidas Campus Chunky – Blanco/Negro',en:'Adidas Campus Chunky Sneaker – White/Black',fr:'Adidas Campus Chunky – Blanc/Noir',it:'Adidas Campus Chunky – Bianco/Nero',ar:'حذاء أديداس كامبوس تشانكي – أبيض/أسود'},
     desc:{es:'Zapatilla Adidas Campus Chunky en blanco y negro, suela gruesa de estilo retro y agarre resistente. Un icónico streetwear con actitud urbana.',
       en:'Adidas Campus Chunky sneaker in white and black, chunky retro-style sole and durable grip. An iconic streetwear silhouette with everyday attitude.',
@@ -1006,7 +1008,127 @@ const PRODUCTS = [
       it:'Sneaker Adidas Campus Chunky bianca e nera, suola chunky in stile retrò e ottima aderenza. Una silhouette streetwear iconica dallo stile urbano.',
       ar:'حذاء أديداس كامبوس تشانكي بلونين أبيض وأسود، بنعل سميك بطراز ريترو وقبضة متينة. تصميم ستريت وير مميز بروح عصرية.'},
     tag:{es:'Streetwear',en:'Streetwear',fr:'Streetwear',it:'Streetwear',ar:'ستريت وير'} },
-  { id:'cam-01', cat:'camisas', price:480, img:'https://i.imgur.com/uAZv3rG.png', colors:['blanco','azul','dorado'], sizes:['S','M','L','XL','XXL'],
+  { id:'zap-00b', cat:'zapatos', price:420, fixedPrice:true, img:'https://i.imgur.com/sRrWVMk.jpeg', colors:['blanco'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Nike Zoom Blanco y Plata',en:'Nike Zoom Sneaker White & Silver',fr:'Baskets Nike Zoom Blanc & Argent',it:'Sneaker Nike Zoom Bianco e Argento',ar:'حذاء نايك زوم أبيض وفضي'},
+    desc:{es:'Zapatilla Nike Zoom en blanco y plata, amortiguación ligera y diseño deportivo urbano. Ideal para el uso diario con un toque moderno.',
+      en:'Nike Zoom sneaker in white and silver, lightweight cushioning and an urban sporty design. Perfect for everyday wear with a modern edge.',
+      fr:'Baskets Nike Zoom en blanc et argent, amorti léger et design sportif urbain. Idéales au quotidien avec une touche moderne.',
+      it:"Sneaker Nike Zoom bianca e argento, ammortizzazione leggera e design sportivo urbano. Perfette per l'uso quotidiano con un tocco moderno.",
+      ar:'حذاء نايك زوم بلونين أبيض وفضي، بوسادة خفيفة وتصميم رياضي عصري. مثالي للاستخدام اليومي بلمسة عصرية.'},
+    tag:{es:'Deportivo',en:'Sporty',fr:'Sport',it:'Sportivo',ar:'رياضي'} },
+  { id:'zap-04', cat:'zapatos', price:410, fixedPrice:true, img:'https://i.imgur.com/YbWooTD.jpeg', colors:['beige'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Dior B30 Beige, Gris y Burdeos',en:'Dior B30 Sneaker – Beige, Grey & Burgundy',fr:'Sneakers Dior B30 – Beige, Gris & Bordeaux',it:'Sneaker Dior B30 – Beige, Grigio e Bordeaux',ar:'حذاء ديور B30 بيج ورمادي وعنابي'},
+    desc:{es:'Zapatilla Dior B30 en beige, gris y burdeos, silueta chunky de lujo con acabados premium. Una pieza statement para el streetwear de alta gama.',
+      en:'Dior B30 sneaker in beige, grey and burgundy, a luxury chunky silhouette with premium finishes. A statement piece for high-end streetwear.',
+      fr:'Sneakers Dior B30 en beige, gris et bordeaux, silhouette chunky de luxe aux finitions haut de gamme. Une pièce statement pour le streetwear premium.',
+      it:'Sneaker Dior B30 in beige, grigio e bordeaux, silhouette chunky di lusso con finiture premium. Un pezzo statement per lo streetwear di alta gamma.',
+      ar:'حذاء ديور B30 بألوان البيج والرمادي والعنابي، بتصميم فخم سميك وتشطيبات راقية. قطعة مميزة لعشاق الستريت وير الفاخر.'},
+    tag:{es:'Lujo',en:'Luxury',fr:'Luxe',it:'Lusso',ar:'فاخر'} },
+  { id:'zap-05', cat:'zapatos', price:430, fixedPrice:true, img:'https://i.imgur.com/TJGqkBK.jpeg', colors:['gris'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla LV Skate Gris y Blanco',en:'LV Skate Sneaker – Grey & White',fr:'Sneakers LV Skate – Gris & Blanc',it:'Sneaker LV Skate – Grigio e Bianco',ar:'حذاء LV سكيت رمادي وأبيض'},
+    desc:{es:'Zapatilla LV Skate en gris y blanco, diseño skate de lujo con suela robusta. Estilo urbano de alta gama para el día a día.',
+      en:'LV Skate sneaker in grey and white, luxury skate-inspired design with a sturdy sole. High-end urban style for everyday wear.',
+      fr:'Sneakers LV Skate en gris et blanc, design skate de luxe à la semelle robuste. Un style urbain haut de gamme pour tous les jours.',
+      it:'Sneaker LV Skate grigia e bianca, design skate di lusso con suola robusta. Stile urbano di alta gamma per uso quotidiano.',
+      ar:'حذاء LV سكيت بلونين رمادي وأبيض، بتصميم فاخر مستوحى من رياضة السكيت ونعل متين. أسلوب حضري راقٍ للاستخدام اليومي.'},
+    tag:{es:'Lujo',en:'Luxury',fr:'Luxe',it:'Lusso',ar:'فاخر'} },
+  { id:'zap-06', cat:'zapatos', price:390, fixedPrice:true, img:'https://i.imgur.com/lTweWn8.jpeg', colors:['gris'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Nike Zoom Vomero 5 Gris, Azul y Burdeos',en:'Nike Zoom Vomero 5 Sneaker – Grey, Blue & Burgundy',fr:'Baskets Nike Zoom Vomero 5 – Gris, Bleu & Bordeaux',it:'Sneaker Nike Zoom Vomero 5 – Grigio, Blu e Bordeaux',ar:'حذاء نايك زوم فوميرو 5 رمادي وأزرق وعنابي'},
+    desc:{es:'Zapatilla Nike Zoom Vomero 5 en gris, azul y burdeos, amortiguación premium y línea retro-running. Comodidad total con estética deportiva actual.',
+      en:'Nike Zoom Vomero 5 sneaker in grey, blue and burgundy, premium cushioning with a retro-running silhouette. Total comfort with a current sporty look.',
+      fr:'Baskets Nike Zoom Vomero 5 en gris, bleu et bordeaux, amorti premium et ligne retro-running. Confort total avec une esthétique sportive actuelle.',
+      it:'Sneaker Nike Zoom Vomero 5 grigia, blu e bordeaux, ammortizzazione premium e linea retro-running. Comfort totale con estetica sportiva attuale.',
+      ar:'حذاء نايك زوم فوميرو 5 بألوان الرمادي والأزرق والعنابي، بوسادة فاخرة وتصميم رياضي كلاسيكي. راحة كاملة بمظهر رياضي عصري.'},
+    tag:{es:'Running',en:'Running',fr:'Running',it:'Running',ar:'جري'} },
+  { id:'zap-07', cat:'zapatos', price:410, fixedPrice:true, img:'https://i.imgur.com/cKx8qER.jpeg', colors:['negro'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Asics GEL-Kahana 8 Negro, Gris y Celeste',en:'Asics GEL-Kahana 8 Sneaker – Black, Grey & Sky Blue',fr:'Baskets Asics GEL-Kahana 8 – Noir, Gris & Bleu Ciel',it:'Sneaker Asics GEL-Kahana 8 – Nero, Grigio e Blu Cielo',ar:'حذاء أسيكس جل-كاهانا 8 أسود ورمادي وأزرق سماوي'},
+    desc:{es:'Zapatilla Asics GEL-Kahana 8 en negro, gris y celeste, tecnología GEL para máxima amortiguación. Ideal para trekking urbano y uso diario.',
+      en:'Asics GEL-Kahana 8 sneaker in black, grey and sky blue, GEL technology for maximum cushioning. Great for urban trekking and everyday wear.',
+      fr:'Baskets Asics GEL-Kahana 8 en noir, gris et bleu ciel, technologie GEL pour un amorti maximal. Idéales pour le trekking urbain et le quotidien.',
+      it:"Sneaker Asics GEL-Kahana 8 nera, grigia e blu cielo, tecnologia GEL per il massimo ammortizzamento. Perfette per il trekking urbano e l'uso quotidiano.",
+      ar:'حذاء أسيكس جل-كاهانا 8 بألوان الأسود والرمادي والأزرق السماوي، بتقنية GEL لأقصى امتصاص للصدمات. مثالي للتنزه الحضري والاستخدام اليومي.'},
+    tag:{es:'Outdoor',en:'Outdoor',fr:'Outdoor',it:'Outdoor',ar:'أوت دور'} },
+  { id:'zap-08', cat:'zapatos', price:420, fixedPrice:true, img:'https://i.imgur.com/8QkpSt2.jpeg', colors:['gris'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla HOKA Mafate Speed 4 Gris, Oliva y Dorado',en:'HOKA Mafate Speed 4 Sneaker – Grey, Olive & Gold',fr:'Baskets HOKA Mafate Speed 4 – Gris, Olive & Doré',it:'Sneaker HOKA Mafate Speed 4 – Grigio, Oliva e Oro',ar:'حذاء هوكا مافاتي سبيد 4 رمادي وزيتوني وذهبي'},
+    desc:{es:'Zapatilla HOKA Mafate Speed 4 en gris, oliva y dorado, entresuela maximalista para máxima estabilidad. Rendimiento trail con un look llamativo.',
+      en:'HOKA Mafate Speed 4 sneaker in grey, olive and gold, maximalist midsole for top stability. Trail performance with a bold look.',
+      fr:'Baskets HOKA Mafate Speed 4 en gris, olive et doré, semelle intermédiaire maximaliste pour une stabilité optimale. Performance trail au look affirmé.',
+      it:'Sneaker HOKA Mafate Speed 4 grigia, oliva e oro, mediasuola maximalista per la massima stabilità. Prestazioni da trail con un look deciso.',
+      ar:'حذاء هوكا مافاتي سبيد 4 بألوان الرمادي والزيتوني والذهبي، بنعل وسطي ضخم لأقصى ثبات. أداء ترايل بمظهر جريء.'},
+    tag:{es:'Trail',en:'Trail',fr:'Trail',it:'Trail',ar:'تريل'} },
+  { id:'zap-09', cat:'zapatos', price:450, fixedPrice:true, img:'https://i.imgur.com/PqhKBs7.png', colors:['negro'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Air Jordan 1 Low Triple Negro',en:'Air Jordan 1 Low Sneaker – Triple Black',fr:'Sneakers Air Jordan 1 Low – Triple Black',it:'Sneaker Air Jordan 1 Low – Triple Black',ar:'حذاء إير جوردن 1 لو أسود بالكامل'},
+    desc:{es:'Zapatilla Air Jordan 1 Low en triple negro, combinación de charol y cuero. Un ícono del basketball convertido en imprescindible urbano.',
+      en:'Air Jordan 1 Low sneaker in triple black, a mix of patent and leather. A basketball icon turned everyday streetwear staple.',
+      fr:'Sneakers Air Jordan 1 Low en triple noir, mélange de cuir verni et de cuir lisse. Une icône du basketball devenue un incontournable urbain.',
+      it:"Sneaker Air Jordan 1 Low in total nero, mix di vernice e pelle. Un'icona del basket diventata un must dello streetwear.",
+      ar:'حذاء إير جوردن 1 لو باللون الأسود بالكامل، مزيج من الجلد اللامع والجلد العادي. أيقونة كرة السلة التي أصبحت أساسية في الإطلالة اليومية.'},
+    tag:{es:'Icónico',en:'Iconic',fr:'Icônique',it:'Iconico',ar:'أيقوني'} },
+  { id:'zap-10', cat:'zapatos', price:440, fixedPrice:true, img:'https://i.imgur.com/KxoRvue.png', colors:['beige'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Nike Air Force 1 Low x Stüssy x The North Face Beige, Marrón y Negro',en:'Nike Air Force 1 Low x Stüssy x The North Face Sneaker – Beige, Brown & Black',fr:'Sneakers Nike Air Force 1 Low x Stüssy x The North Face – Beige, Marron & Noir',it:'Sneaker Nike Air Force 1 Low x Stüssy x The North Face – Beige, Marrone e Nero',ar:'حذاء نايك إير فورس 1 لو x ستوسي x ذا نورث فيس بيج وبني وأسود'},
+    desc:{es:'Colaboración Nike Air Force 1 Low con Stüssy y The North Face en beige, marrón y negro. Una pieza de colección con historia en cada detalle.',
+      en:"Nike Air Force 1 Low collab with Stüssy and The North Face in beige, brown and black. A collector's piece with story in every detail.",
+      fr:'Collaboration Nike Air Force 1 Low avec Stüssy et The North Face en beige, marron et noir. Une pièce de collection au récit soigné.',
+      it:'Collaborazione Nike Air Force 1 Low con Stüssy e The North Face in beige, marrone e nero. Un pezzo da collezione curato in ogni dettaglio.',
+      ar:'تعاون نايك إير فورس 1 لو مع ستوسي وذا نورث فيس بألوان البيج والبني والأسود. قطعة كوليكشن بتفاصيل مميزة.'},
+    tag:{es:'Colaboración',en:'Collab',fr:'Collab',it:'Collab',ar:'تعاون خاص'} },
+  { id:'zap-11', cat:'zapatos', price:430, fixedPrice:true, img:'https://i.imgur.com/1qM3VAJ.png', colors:['azul'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Nike SB Dunk Low x Supreme Azul Marino y Gum',en:'Nike SB Dunk Low x Supreme Sneaker – Navy & Gum',fr:'Sneakers Nike SB Dunk Low x Supreme – Bleu Marine & Gum',it:'Sneaker Nike SB Dunk Low x Supreme – Blu Navy e Gum',ar:'حذاء نايك SB دانك لو x سوبريم كحلي وجَم'},
+    desc:{es:'Colaboración Nike SB Dunk Low x Supreme en azul marino con suela gum. Una pieza codiciada por los amantes del skate y el streetwear.',
+      en:'Nike SB Dunk Low x Supreme collab in navy with a gum sole. A coveted piece for skate and streetwear lovers.',
+      fr:'Collaboration Nike SB Dunk Low x Supreme en bleu marine avec semelle gum. Une pièce convoitée par les amateurs de skate et de streetwear.',
+      it:'Collaborazione Nike SB Dunk Low x Supreme blu navy con suola gum. Un pezzo ambito dagli amanti dello skate e dello streetwear.',
+      ar:'تعاون نايك SB دانك لو مع سوبريم باللون الكحلي ونعل جَم. قطعة مرغوبة لعشاق السكيت والستريت وير.'},
+    tag:{es:'Colaboración',en:'Collab',fr:'Collab',it:'Collab',ar:'تعاون خاص'} },
+  { id:'zap-12', cat:'zapatos', price:440, fixedPrice:true, img:'https://i.imgur.com/SvD51KF.png', colors:['negro'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla New Balance 2002R Negro y Blanco',en:'New Balance 2002R Sneaker – Black & White',fr:'Sneakers New Balance 2002R – Noir & Blanc',it:'Sneaker New Balance 2002R – Nero e Bianco',ar:'حذاء نيو بالانس 2002R أسود وأبيض'},
+    desc:{es:'Zapatilla New Balance 2002R en negro y blanco, línea dad-shoe con amortiguación ABZORB. Un clásico moderno para cualquier look casual.',
+      en:'New Balance 2002R sneaker in black and white, dad-shoe silhouette with ABZORB cushioning. A modern classic for any casual look.',
+      fr:"Sneakers New Balance 2002R en noir et blanc, silhouette dad-shoe à l'amorti ABZORB. Un classique moderne pour tout look casual.",
+      it:'Sneaker New Balance 2002R nera e bianca, silhouette dad-shoe con ammortizzazione ABZORB. Un classico moderno per ogni look casual.',
+      ar:'حذاء نيو بالانس 2002R بلونين أسود وأبيض، بتصميم دعم كلاسيكي وتقنية امتصاص الصدمات ABZORB. قطعة كلاسيكية عصرية لأي إطلالة كاجوال.'},
+    tag:{es:'Casual',en:'Casual',fr:'Casual',it:'Casual',ar:'كاجوال'} },
+  { id:'zap-13', cat:'zapatos', price:390, fixedPrice:true, img:'https://i.imgur.com/Q4bZDOY.png', colors:['blanco'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Adidas Stan Smith Blanco y Negro',en:'Adidas Stan Smith Sneaker – White & Black',fr:'Sneakers Adidas Stan Smith – Blanc & Noir',it:'Sneaker Adidas Stan Smith – Bianco e Nero',ar:'حذاء أديداس ستان سميث أبيض وأسود'},
+    desc:{es:'Zapatilla Adidas Stan Smith en blanco con detalles en negro, el tenis minimalista más icónico de la historia. Combina con todo, siempre.',
+      en:'Adidas Stan Smith sneaker in white with black details, the most iconic minimalist tennis shoe in history. Goes with everything, always.',
+      fr:"Sneakers Adidas Stan Smith en blanc à détails noirs, la basket minimaliste la plus iconique de l'histoire. Elle se marie avec tout, toujours.",
+      it:'Sneaker Adidas Stan Smith bianca con dettagli neri, la scarpa da tennis minimalista più iconica della storia. Si abbina a tutto, sempre.',
+      ar:'حذاء أديداس ستان سميث أبيض بتفاصيل سوداء، أشهر حذاء تنس بسيط في التاريخ. يناسب أي إطلالة في أي وقت.'},
+    tag:{es:'Clásico',en:'Classic',fr:'Classique',it:'Classico',ar:'كلاسيكي'} },
+  { id:'zap-14', cat:'zapatos', price:400, fixedPrice:true, img:'https://i.imgur.com/KvwELQH.png', colors:['blanco'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Adidas Grand Court (NEO) Blanco y Negro',en:'Adidas Grand Court (NEO) Sneaker – White & Black',fr:'Sneakers Adidas Grand Court (NEO) – Blanc & Noir',it:'Sneaker Adidas Grand Court (NEO) – Bianco e Nero',ar:'حذاء أديداس جراند كورت (نيو) أبيض وأسود'},
+    desc:{es:'Zapatilla Adidas Grand Court NEO en blanco y negro, línea tenis casual cómoda para el uso diario. Estilo simple y versátil.',
+      en:'Adidas Grand Court NEO sneaker in white and black, a comfortable casual tennis-style shoe for everyday wear. Simple and versatile.',
+      fr:'Sneakers Adidas Grand Court NEO en blanc et noir, ligne tennis casual confortable pour le quotidien. Style simple et polyvalent.',
+      it:"Sneaker Adidas Grand Court NEO bianca e nera, linea tennis casual comoda per l'uso quotidiano. Stile semplice e versatile.",
+      ar:'حذاء أديداس جراند كورت نيو بلونين أبيض وأسود، بتصميم تنس كاجوال مريح للاستخدام اليومي. أسلوب بسيط ومتعدد الاستخدامات.'},
+    tag:{es:'Casual',en:'Casual',fr:'Casual',it:'Casual',ar:'كاجوال'} },
+  { id:'zap-15', cat:'zapatos', price:380, fixedPrice:true, img:'https://i.imgur.com/JJgX1iD.png', colors:['blanco'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Puma Palermo Blanco, Verde y Gum',en:'Puma Palermo Sneaker – White, Green & Gum',fr:'Baskets Puma Palermo – Blanc, Vert & Gum',it:'Sneaker Puma Palermo – Bianco, Verde e Gum',ar:'حذاء بوما باليرمو أبيض وأخضر وجَم'},
+    desc:{es:'Zapatilla Puma Palermo en blanco, verde y suela gum, silueta terrace retro inspirada en los años 70. El toque vintage para tu look diario.',
+      en:'Puma Palermo sneaker in white, green and gum sole, a retro terrace silhouette inspired by the 70s. A vintage touch for your everyday look.',
+      fr:'Baskets Puma Palermo en blanc, vert et semelle gum, silhouette terrace rétro inspirée des années 70. Une touche vintage pour le quotidien.',
+      it:"Sneaker Puma Palermo bianca, verde e suola gum, silhouette terrace retrò ispirata agli anni '70. Un tocco vintage per il look di tutti i giorni.",
+      ar:'حذاء بوما باليرمو بألوان الأبيض والأخضر ونعل جَم، بتصميم كلاسيكي مستوحى من السبعينيات. لمسة عصرية قديمة لإطلالتك اليومية.'},
+    tag:{es:'Vintage',en:'Vintage',fr:'Vintage',it:'Vintage',ar:'كلاسيكي قديم'} },
+  { id:'zap-16', cat:'zapatos', price:410, fixedPrice:true, img:'https://i.imgur.com/IMg17It.png', colors:['azul'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Adidas Gazelle Celeste y Blanco',en:'Adidas Gazelle Sneaker – Sky Blue & White',fr:'Sneakers Adidas Gazelle – Bleu Ciel & Blanc',it:'Sneaker Adidas Gazelle – Blu Cielo e Bianco',ar:'حذاء أديداس غازيل أزرق سماوي وأبيض'},
+    desc:{es:'Zapatilla Adidas Gazelle en celeste y blanco, gamuza suave y silueta retro de los 90. Un básico del streetwear que nunca pasa de moda.',
+      en:'Adidas Gazelle sneaker in sky blue and white, soft suede and a 90s retro silhouette. A streetwear staple that never goes out of style.',
+      fr:'Sneakers Adidas Gazelle en bleu ciel et blanc, daim doux et silhouette rétro des années 90. Un basique streetwear indémodable.',
+      it:"Sneaker Adidas Gazelle blu cielo e bianca, camoscio morbido e silhouette retrò anni '90. Un basico streetwear sempre di moda.",
+      ar:'حذاء أديداس غازيل بلونين أزرق سماوي وأبيض، من الشمواه الناعم بتصميم كلاسيكي من التسعينيات. قطعة أساسية في الستريت وير لا تنتهي صلاحيتها أبدًا.'},
+    tag:{es:'Retro',en:'Retro',fr:'Rétro',it:'Retro',ar:'ريترو'} },
+  { id:'zap-17', cat:'zapatos', price:420, fixedPrice:true, img:'https://i.imgur.com/z9DMtQU.png', colors:['blanco'], sizes:['40','41','42','43','44'],
+    name:{es:'Zapatilla Alexander McQueen Oversized Blanco y Negro',en:'Alexander McQueen Oversized Sneaker – White & Black',fr:'Sneakers Alexander McQueen Oversized – Blanc & Noir',it:'Sneaker Alexander McQueen Oversized – Bianco e Nero',ar:'حذاء ألكسندر ماكوين أوفرسايز أبيض وأسود'},
+    desc:{es:'Zapatilla Alexander McQueen Oversized en blanco y negro, suela extra gruesa y diseño de lujo minimalista. La elegancia del streetwear de alta costura.',
+      en:'Alexander McQueen Oversized sneaker in white and black, extra-chunky sole with minimalist luxury design. The elegance of high-fashion streetwear.',
+      fr:"Sneakers Alexander McQueen Oversized en blanc et noir, semelle extra épaisse et design de luxe minimaliste. L'élégance du streetwear haute couture.",
+      it:"Sneaker Alexander McQueen Oversized bianca e nera, suola extra chunky e design di lusso minimalista. L'eleganza dello streetwear di alta moda.",
+      ar:'حذاء ألكسندر ماكوين أوفرسايز بلونين أبيض وأسود، بنعل سميك جدًا وتصميم فاخر بسيط. أناقة الستريت وير الراقي.'},
+    tag:{es:'Lujo',en:'Luxury',fr:'Luxe',it:'Lusso',ar:'فاخر'} },
+  { id:'cam-01', cat:'camisas', price:480, img:'https://i.imgur.com/uAZv3rG.png', colors:['blanco'], sizes:['S','M','L','XL','XXL'],
     name:{es:'Camisa Blanca Algodón Real',en:'White Royal Cotton Shirt',fr:'Chemise Blanche Coton Royal',it:'Camicia Bianca Cotone Reale',ar:'قميص أبيض قطن ملكي'},
     desc:{es:'Camisa en algodón egipcio de tacto suave, cuello mandarín bordado a mano con hilo dorado. Corte moderno que combina con traje o de manera informal.',
       en:'Soft-touch Egyptian cotton shirt with a mandarin collar hand-embroidered in gold thread. A modern cut that works with a suit or dressed down.',
@@ -1014,7 +1136,7 @@ const PRODUCTS = [
       it:"Camicia in cotone egiziano dal tocco morbido, colletto alla coreana ricamato a mano con filo dorato. Taglio moderno, perfetta con l'abito o in versione casual.",
       ar:'قميص من القطن المصري الناعم بياقة صينية مطرزة يدويًا بخيط ذهبي. قصة عصرية تناسب البدلة أو الإطلالة اليومية.'},
     tag:{es:'Best seller',en:'Best seller',fr:'Best-seller',it:'Best seller',ar:'الأكثر مبيعًا'} },
-  { id:'cam-02', cat:'camisas', price:520, img:'https://i.imgur.com/Fyp0wCh.png', colors:['azul','blanco','negro'], sizes:['S','M','L','XL','XXL'],
+  { id:'cam-02', cat:'camisas', price:520, img:'https://i.imgur.com/Fyp0wCh.png', colors:['azul'], sizes:['S','M','L','XL','XXL'],
     name:{es:'Camisa Azul Marino Slim',en:'Navy Blue Slim Shirt',fr:'Chemise Bleu Marine Ajustée',it:'Camicia Blu Navy Slim',ar:'قميص كحلي ضيق القصة'},
     desc:{es:'Camisa de corte slim en popelín azul marino, botones de nácar y puños dobles. Pensada para el hombre que cuida cada detalle de su presencia.',
       en:'Slim-fit navy poplin shirt with mother-of-pearl buttons and double cuffs. Made for the man who cares about every detail of his presence.',
@@ -1022,7 +1144,7 @@ const PRODUCTS = [
       it:"Camicia slim in popeline blu navy, bottoni in madreperla e polsini doppi. Pensata per l'uomo attento a ogni dettaglio.",
       ar:'قميص بقصة ضيقة من قماش البوبلين الكحلي، بأزرار من الصدف وأساور مزدوجة. صُمم للرجل الذي يهتم بكل تفصيل في إطلالته.'},
     tag:{es:'Nuevo',en:'New',fr:'Nouveau',it:'Novità',ar:'جديد'} },
-  { id:'cam-03', cat:'camisas', price:560, img:'https://i.imgur.com/y6cG0Ij.jpeg', colors:['negro','dorado','blanco'], sizes:['S','M','L','XL','XXL'],
+  { id:'cam-03', cat:'camisas', price:560, img:'https://i.imgur.com/y6cG0Ij.jpeg', colors:['negro'], sizes:['S','M','L','XL','XXL'],
     name:{es:'Camisa Negra Essaouira',en:'Black Essaouira Shirt',fr:'Chemise Noire Essaouira',it:'Camicia Nera Essaouira',ar:'قميص أسود إصويرة'},
     desc:{es:'Lino ligero en negro profundo con costuras doradas en los puños. Fresca, elegante y perfecta para las noches cálidas de Marruecos.',
       en:'Lightweight deep-black linen with gold-stitched cuffs. Cool, elegant, and perfect for warm Moroccan evenings.',
@@ -1030,7 +1152,7 @@ const PRODUCTS = [
       it:'Lino leggero nero intenso con cuciture dorate ai polsini. Fresca ed elegante, perfetta per le calde sere marocchine.',
       ar:'كتان خفيف بلون أسود عميق مع خياطة ذهبية عند الأساور. أنيق ومنعش، مثالي لأمسيات المغرب الدافئة.'},
     tag:{es:'Edición limitada',en:'Limited edition',fr:'Édition limitée',it:'Edizione limitata',ar:'إصدار محدود'} },
-  { id:'tra-01', cat:'trajes', price:2800, img:'https://i.imgur.com/A4ZpFpk.jpeg', colors:['azul','negro','dorado'], sizes:['S','M','L','XL','XXL'],
+  { id:'tra-01', cat:'trajes', price:2800, img:'https://i.imgur.com/A4ZpFpk.jpeg', colors:['azul'], sizes:['S','M','L','XL','XXL'],
     name:{es:'Traje Sultán Azul Marino',en:'Sultan Navy Suit',fr:'Costume Sultan Bleu Marine',it:'Abito Sultano Blu Navy',ar:'بدلة سلطان كحلية'},
     desc:{es:'Traje de dos piezas en lana merino azul marino, forro interior en satén dorado y solapa clásica. La pieza central de todo guardarropa formal.',
       en:'Two-piece navy merino wool suit with a gold satin lining and classic lapel. The centerpiece of any formal wardrobe.',
@@ -1038,7 +1160,7 @@ const PRODUCTS = [
       it:'Abito due pezzi in lana merino blu navy, fodera in raso dorato e revers classico. Il capo centrale di ogni guardaroba formale.',
       ar:'بدلة من قطعتين من الصوف الميرينو الكحلي، بطانة من الساتان الذهبي وياقة كلاسيكية. القطعة المحورية في أي خزانة أناقة رسمية.'},
     tag:{es:'Ceremonia',en:'Ceremony',fr:'Cérémonie',it:'Cerimonia',ar:'مناسبات'} },
-  { id:'tra-02', cat:'trajes', price:3200, img:'https://i.imgur.com/LdUAU5k.jpeg', colors:['blanco','dorado'], sizes:['S','M','L','XL','XXL'],
+  { id:'tra-02', cat:'trajes', price:3200, img:'https://i.imgur.com/LdUAU5k.jpeg', colors:['blanco'], sizes:['S','M','L','XL','XXL'],
     name:{es:'Traje Ceremonia Blanco Marfil',en:'Ivory White Ceremony Suit',fr:'Costume Cérémonie Blanc Ivoire',it:'Abito Cerimonia Bianco Avorio',ar:'بدلة مناسبات بيضاء عاجية'},
     desc:{es:'Traje en blanco marfil con solapa satinada dorada, corte entallado. Diseñado para bodas y grandes celebraciones donde la elegancia es protagonista.',
       en:'Ivory white suit with a satin gold lapel, tailored fit. Designed for weddings and grand celebrations where elegance takes center stage.',
@@ -1046,7 +1168,7 @@ const PRODUCTS = [
       it:'Abito bianco avorio con revers in raso dorato, taglio sartoriale. Pensato per matrimoni e grandi celebrazioni all\'insegna dell\'eleganza.',
       ar:'بدلة بيضاء عاجية بياقة ساتان ذهبية وقصة ضيقة أنيقة. صُممت لحفلات الزفاف والمناسبات الكبرى حيث الأناقة هي الأساس.'},
     tag:{es:'Bodas',en:'Weddings',fr:'Mariages',it:'Matrimoni',ar:'أعراس'} },
-  { id:'tra-03', cat:'trajes', price:2600, img:'https://i.imgur.com/HomtC3y.jpeg', colors:['negro','azul','blanco'], sizes:['S','M','L','XL','XXL'],
+  { id:'tra-03', cat:'trajes', price:2600, img:'https://i.imgur.com/HomtC3y.jpeg', colors:['negro'], sizes:['S','M','L','XL','XXL'],
     name:{es:'Traje Negro Kenitra',en:'Black Kenitra Suit',fr:'Costume Noir Kenitra',it:'Abito Nero Kenitra',ar:'بدلة سوداء القنيطرة'},
     desc:{es:'Traje clásico en negro, corte entallado y tejido resistente a las arrugas. Versátil para reuniones de negocios o eventos formales.',
       en:'Classic black suit, tailored fit and wrinkle-resistant fabric. Versatile for business meetings or formal events.',
@@ -1054,7 +1176,7 @@ const PRODUCTS = [
       it:'Abito nero classico, taglio sartoriale e tessuto antipiega. Versatile per riunioni di lavoro o eventi formali.',
       ar:'بدلة سوداء كلاسيكية بقصة ضيقة وقماش مقاوم للتجعد. مناسبة لاجتماعات العمل والمناسبات الرسمية.'},
     tag:{es:'Oficina',en:'Office',fr:'Bureau',it:'Ufficio',ar:'العمل'} },
-  { id:'acc-01', cat:'accesorios', price:320, img:'https://i.imgur.com/Uq9QBl0.jpeg', colors:['negro','dorado'], sizes:['90 cm','95 cm','100 cm','105 cm','110 cm'],
+  { id:'acc-01', cat:'accesorios', price:320, img:'https://i.imgur.com/Uq9QBl0.jpeg', colors:['negro'], sizes:['90 cm','95 cm','100 cm','105 cm','110 cm'],
     name:{es:'Cinturón Cuero Negro y Oro',en:'Black & Gold Leather Belt',fr:'Ceinture Cuir Noir et Or',it:'Cintura in Pelle Nera e Oro',ar:'حزام جلد أسود وذهبي'},
     desc:{es:'Cinturón de cuero genuino negro con hebilla bañada en oro grabada con el sello de la marca. El acabado perfecto para cualquier look formal.',
       en:'Genuine black leather belt with a gold-plated buckle engraved with the brand seal. The perfect finish for any formal look.',
@@ -1062,7 +1184,7 @@ const PRODUCTS = [
       it:'Cintura in vera pelle nera con fibbia placcata oro incisa con il sigillo del marchio. Il tocco finale perfetto per ogni look formale.',
       ar:'حزام من الجلد الطبيعي الأسود بإبزيم مطلي بالذهب محفور بختم العلامة. اللمسة الأخيرة المثالية لأي إطلالة رسمية.'},
     tag:{es:'Esencial',en:'Essential',fr:'Essentiel',it:'Essenziale',ar:'أساسي'} },
-  { id:'acc-02', cat:'accesorios', price:250, img:'https://i.imgur.com/8wmj2hV.jpeg', colors:['azul','blanco','dorado'], sizes:['unico'],
+  { id:'acc-02', cat:'accesorios', price:250, img:'https://i.imgur.com/8wmj2hV.jpeg', colors:['azul'], sizes:['unico'],
     name:{es:'Pañuelos de Bolsillo Real',en:'Royal Pocket Squares',fr:'Pochettes de Costume Royales',it:'Pochette da Taschino Reali',ar:'مناديل جيب ملكية'},
     desc:{es:'Set de tres pañuelos de bolsillo en seda —azul, blanco y dorado— para dar el toque final a tu chaqueta en cualquier ocasión especial.',
       en:'Set of three silk pocket squares — blue, white and gold — to finish off your jacket for any special occasion.',
@@ -1070,7 +1192,7 @@ const PRODUCTS = [
       it:'Set di tre pochette in seta — blu, bianca e dorata — per completare la giacca in ogni occasione speciale.',
       ar:'طقم من ثلاث مناديل جيب حريرية — أزرق وأبيض وذهبي — لإضفاء اللمسة الأخيرة على سترتك في أي مناسبة خاصة.'},
     tag:{es:'Set x3',en:'Set of 3',fr:'Lot x3',it:'Set x3',ar:'طقم من 3'} },
-  { id:'acc-03', cat:'accesorios', price:380, img:'https://i.imgur.com/S0nI7Tp.jpeg', colors:['dorado','negro'], sizes:['unico'],
+  { id:'acc-03', cat:'accesorios', price:380, img:'https://i.imgur.com/S0nI7Tp.jpeg', colors:['dorado'], sizes:['unico'],
     name:{es:'Gemelos Corona Dorada',en:'Golden Crown Cufflinks',fr:'Boutons de Manchette Couronne Dorée',it:'Gemelli Corona Dorata',ar:'أزرار كم بتاج ذهبي'},
     desc:{es:'Gemelos bañados en oro con relieve de corona real, presentados en estuche de terciopelo. El regalo perfecto para el hombre elegante.',
       en:'Gold-plated cufflinks with a royal crown relief, presented in a velvet case. The perfect gift for the elegant man.',
@@ -1078,7 +1200,7 @@ const PRODUCTS = [
       it:'Gemelli placcati oro con rilievo a corona reale, presentati in astuccio di velluto. Il regalo perfetto per l\'uomo elegante.',
       ar:'أزرار كم مطلية بالذهب بنقش تاج ملكي، تُقدَّم في علبة مخملية. الهدية المثالية للرجل الأنيق.'},
     tag:{es:'Detalle',en:'Detail',fr:'Détail',it:'Dettaglio',ar:'لمسة مميزة'} },
-  { id:'zap-01', cat:'zapatos', price:780, img:'https://i.imgur.com/XrEXhsO.jpeg', colors:['negro','dorado'], sizes:['40','41','42','43','44','45'],
+  { id:'zap-01', cat:'zapatos', price:780, img:'https://i.imgur.com/XrEXhsO.jpeg', colors:['negro'], sizes:['40','41','42','43','44','45'],
     name:{es:'Mocasín Cuero Negro',en:'Black Leather Loafer',fr:'Mocassin Cuir Noir',it:'Mocassino in Pelle Nera',ar:'موكاسان جلد أسود'},
     desc:{es:'Mocasín de cuero genuino negro con suela cosida a mano y forro interior transpirable. Comodidad y elegancia para el uso diario.',
       en:'Genuine black leather loafer with a hand-stitched sole and breathable lining. Comfort and elegance for everyday wear.',
@@ -1086,7 +1208,7 @@ const PRODUCTS = [
       it:'Mocassino in vera pelle nera con suola cucita a mano e fodera traspirante. Comfort ed eleganza per l\'uso quotidiano.',
       ar:'حذاء موكاسان من الجلد الطبيعي الأسود بنعل مخيط يدويًا وبطانة داخلية قابلة للتنفس. راحة وأناقة للاستخدام اليومي.'},
     tag:{es:'Clásico',en:'Classic',fr:'Classique',it:'Classico',ar:'كلاسيكي'} },
-  { id:'zap-02', cat:'zapatos', price:950, img:'https://i.imgur.com/y8C5TF2.jpeg', colors:['azul','negro'], sizes:['40','41','42','43','44','45'],
+  { id:'zap-02', cat:'zapatos', price:950, img:'https://i.imgur.com/y8C5TF2.jpeg', colors:['azul'], sizes:['40','41','42','43','44','45'],
     name:{es:'Botín Azul Marino Artesanal',en:'Handcrafted Navy Boot',fr:'Bottine Bleu Marine Artisanale',it:'Stivaletto Blu Navy Artigianale',ar:'بوت كحلي حرفي'},
     desc:{es:'Botín en cuero azul marino trabajado a mano por artesanos locales, con cordones encerados y suela de goma antideslizante.',
       en:'Navy leather boot handcrafted by local artisans, with waxed laces and a non-slip rubber sole.',
@@ -1094,7 +1216,7 @@ const PRODUCTS = [
       it:'Stivaletto in pelle blu navy lavorato a mano da artigiani locali, lacci cerati e suola in gomma antiscivolo.',
       ar:'بوت من الجلد الكحلي مصنوع يدويًا على يد حرفيين محليين، برباط مشمّع ونعل مطاطي مانع للانزلاق.'},
     tag:{es:'Artesanal',en:'Handcrafted',fr:'Artisanal',it:'Artigianale',ar:'صناعة يدوية'} },
-  { id:'zap-03', cat:'zapatos', price:690, img:'https://i.imgur.com/DE7qWvl.png', colors:['blanco','dorado'], sizes:['40','41','42','43','44','45'],
+  { id:'zap-03', cat:'zapatos', price:690, img:'https://i.imgur.com/DE7qWvl.png', colors:['blanco'], sizes:['40','41','42','43','44','45'],
     name:{es:'Babouche Dorada de Ceremonia',en:'Golden Ceremony Babouche',fr:'Babouche Dorée de Cérémonie',it:'Babouche Dorata da Cerimonia',ar:'بلغة ذهبية للمناسبات'},
     desc:{es:'Babouche tradicional marroquí bordada a mano en hilo dorado sobre cuero blanco, ideal para ceremonias y celebraciones especiales.',
       en:'Traditional Moroccan babouche hand-embroidered in gold thread on white leather, ideal for ceremonies and special celebrations.',
@@ -1174,327 +1296,4 @@ CATALOG.forEach(p=>{ state[p.id] = {color:p.colors[0], size:null}; });
 /* ============== RENDER PRODUCTOS (con paginación) ============== */
 const grid = document.getElementById('productGrid');
 const loadMoreBtn = document.getElementById('loadMoreBtn');
-const loadStatus = document.getElementById('loadStatus');
-const resultCount = document.getElementById('resultCount');
-const searchBox = document.getElementById('searchBox');
-
-const PAGE_SIZE = 24;
-let currentFilter = 'todos';
-let currentQuery = '';
-let currentList = [];
-let shown = 0;
-
-function getFilteredList(){
-  const q = currentQuery.trim().toLowerCase();
-  return CATALOG.filter(p =>
-    (currentFilter==='todos' || p.cat===currentFilter) &&
-    (q==='' || p.base.name[LANG].toLowerCase().includes(q) || p.base.name.es.toLowerCase().includes(q))
-  );
-}
-
-function renderProducts(filter=currentFilter, query=currentQuery){
-  currentFilter = filter;
-  currentQuery = query;
-  currentList = getFilteredList();
-  shown = 0;
-  grid.innerHTML = '';
-  resultCount.textContent = `${currentList.length.toLocaleString(LANG)} ${t('ui.results')}`;
-  appendPage();
-}
-
-function appendPage(){
-  const next = currentList.slice(shown, shown + PAGE_SIZE);
-  next.forEach(p => grid.appendChild(buildCard(p)));
-  shown += next.length;
-  const remaining = currentList.length - shown;
-  loadMoreBtn.disabled = remaining <= 0;
-  loadMoreBtn.textContent = remaining > 0 ? t('filters.loadMore') : t('ui.noMore');
-  loadStatus.textContent = currentList.length
-    ? `${t('ui.showing')} ${shown} ${t('ui.of')} ${currentList.length.toLocaleString(LANG)}`
-    : t('ui.noResults');
-}
-
-function buildCard(p){
-    const L = localized(p);
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.dataset.cat = p.cat;
-
-    const colorSwatches = p.colors.map(c =>
-      `<button class="swatch ${c===state[p.id].color?'active':''}" data-color="${c}" data-product="${p.id}" aria-label="${COLOR_LABEL_OF(c)}" title="${COLOR_LABEL_OF(c)}"></button>`
-    ).join('');
-
-    const sizeBtns = p.sizes.map(s =>
-      `<button class="size-btn" data-size="${s}" data-product="${p.id}">${sizeLabel(s)}</button>`
-    ).join('');
-
-    card.innerHTML = `
-      <div class="card-img">
-        <span class="card-tag">${L.tag}</span>
-        <img src="${p.img}" alt="${L.name} — Moul El Hwayej" loading="lazy">
-      </div>
-      <div class="card-body">
-        <h3>${L.name}</h3>
-        <p class="card-desc">${L.desc}</p>
-        <div class="card-price">${p.price}<sup>MAD</sup></div>
-        <span class="opt-label">${t('ui.color')}</span>
-        <div class="swatches">${colorSwatches}</div>
-        <span class="opt-label">${t('ui.size')}</span>
-        <div class="sizes">${sizeBtns}</div>
-        <button class="add-btn" data-product="${p.id}" disabled>${t('ui.chooseSize')}</button>
-      </div>
-    `;
-    return card;
-}
-renderProducts();
-
-loadMoreBtn.addEventListener('click', appendPage);
-
-let searchTimer;
-searchBox.addEventListener('input', (e)=>{
-  clearTimeout(searchTimer);
-  const val = e.target.value;
-  searchTimer = setTimeout(()=> renderProducts(currentFilter, val), 250);
-});
-
-/* ============== INTERACCIÓN: color / talla / carrito ============== */
-grid.addEventListener('click', (e)=>{
-  const swatch = e.target.closest('.swatch');
-  const sizeBtn = e.target.closest('.size-btn');
-  const addBtn = e.target.closest('.add-btn');
-
-  if(swatch){
-    const pid = swatch.dataset.product;
-    state[pid].color = swatch.dataset.color;
-    swatch.parentElement.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
-    swatch.classList.add('active');
-  }
-
-  if(sizeBtn){
-    const pid = sizeBtn.dataset.product;
-    state[pid].size = sizeBtn.dataset.size;
-    sizeBtn.parentElement.querySelectorAll('.size-btn').forEach(s=>s.classList.remove('active'));
-    sizeBtn.classList.add('active');
-    const btn = sizeBtn.closest('.card-body').querySelector('.add-btn');
-    btn.disabled = false;
-    btn.textContent = t('ui.addToCart');
-    btn.classList.remove('added');
-  }
-
-  if(addBtn && !addBtn.disabled){
-    const pid = addBtn.dataset.product;
-    const p = CATALOG.find(x=>x.id===pid);
-    const L = localized(p);
-    const sel = state[pid];
-    const existing = cart.find(i=> i.productId===pid && i.color===sel.color && i.size===sel.size);
-    if(existing){ existing.qty++; }
-    else{
-      cart.push({productId:p.id, name:L.name, price:p.price, img:p.img, color:sel.color, size:sel.size, qty:1});
-    }
-    saveCart();
-    renderCart();
-    addBtn.textContent = t('ui.added');
-    addBtn.classList.add('added');
-    setTimeout(()=>{ addBtn.textContent=t('ui.addToCart'); addBtn.classList.remove('added'); }, 1200);
-  }
-});
-
-/* ============== FILTROS ============== */
-document.getElementById('filters').addEventListener('click', (e)=>{
-  const btn = e.target.closest('.filter-btn');
-  if(!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderProducts(btn.dataset.filter, currentQuery);
-});
-
-/* ============== CARRITO / DRAWER ============== */
-const drawer = document.getElementById('cartDrawer');
-const overlay = document.getElementById('overlay');
-const drawerItems = document.getElementById('drawerItems');
-const cartCount = document.getElementById('cartCount');
-const subtotalAmount = document.getElementById('subtotalAmount');
-
-function openDrawer(){ drawer.classList.add('open'); overlay.classList.add('open'); }
-function closeDrawer(){ drawer.classList.remove('open'); overlay.classList.remove('open'); }
-document.getElementById('cartOpenBtn').addEventListener('click', openDrawer);
-document.getElementById('drawerClose').addEventListener('click', closeDrawer);
-overlay.addEventListener('click', closeDrawer);
-
-function renderCart(){
-  const totalQty = cart.reduce((a,i)=>a+i.qty,0);
-  cartCount.textContent = totalQty;
-
-  if(cart.length===0){
-    drawerItems.innerHTML = `<p class="cart-empty">${t('cart.empty')}</p>`;
-  } else {
-    drawerItems.innerHTML = cart.map((item, idx)=>`
-      <div class="cart-item">
-        <img src="${item.img}" alt="${item.name}">
-        <div class="cart-item-info">
-          <h4>${item.name}</h4>
-          <span>${t('ui.colorSize').replace('{color}', COLOR_LABEL_OF(item.color)).replace('{size}', sizeLabel(item.size))}</span>
-          <div class="cart-item-bottom">
-            <div class="qty-ctrl">
-              <button data-action="dec" data-idx="${idx}" aria-label="-">−</button>
-              <span>${item.qty}</span>
-              <button data-action="inc" data-idx="${idx}" aria-label="+">+</button>
-            </div>
-            <button class="remove-btn" data-action="rm" data-idx="${idx}">${t('ui.remove')}</button>
-          </div>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  const subtotal = cart.reduce((a,i)=>a + i.price*i.qty, 0);
-  subtotalAmount.textContent = subtotal.toLocaleString(LANG) + ' MAD';
-}
-renderCart();
-
-drawerItems.addEventListener('click', (e)=>{
-  const btn = e.target.closest('button[data-action]');
-  if(!btn) return;
-  const idx = Number(btn.dataset.idx);
-  const action = btn.dataset.action;
-  if(action==='inc') cart[idx].qty++;
-  if(action==='dec'){ cart[idx].qty--; if(cart[idx].qty<=0) cart.splice(idx,1); }
-  if(action==='rm') cart.splice(idx,1);
-  saveCart();
-  renderCart();
-});
-
-/* ============== CHECKOUT POR WHATSAPP ============== */
-document.getElementById('checkoutBtn').addEventListener('click', ()=>{
-  if(cart.length===0){ openDrawer(); return; }
-  const lines = cart.map(i => `• ${i.name} — ${t('ui.colorSize').replace('{color}', COLOR_LABEL_OF(i.color)).replace('{size}', sizeLabel(i.size))}, ${t('ui.qty')}: ${i.qty} (${i.price*i.qty} MAD)`);
-  const subtotal = cart.reduce((a,i)=>a + i.price*i.qty, 0);
-  const msg = `${t('ui.orderIntro')}\n\n${lines.join('\n')}\n\n${t('cart.subtotal')}: ${subtotal} MAD`;
-  window.open(`https://wa.me/212666662509?text=${encodeURIComponent(msg)}`, '_blank');
-  cart = [];
-  saveCart();
-  renderCart();
-  closeDrawer();
-  showToast(t('cart.orderSent'));
-});
-
-/* ============== TOAST DE CONFIRMACIÓN ============== */
-const toastEl = document.getElementById('toast');
-let toastTimer;
-function showToast(message){
-  toastEl.textContent = message;
-  toastEl.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=> toastEl.classList.remove('show'), 4000);
-}
-
-/* ============== MARQUEE (paleta de marca) ============== */
-const track = document.getElementById('marqueeTrack');
-function renderMarquee(){
-  const words = MARQUEE_WORDS[LANG];
-  let html = '';
-  for(let r=0;r<2;r++){ words.forEach(w=>{ html += `<span>${w}</span><span class="dot"></span>`; }); }
-  track.innerHTML = html;
-}
-renderMarquee();
-
-/* ============== SELECTOR DE IDIOMA ============== */
-const langSwitch = document.getElementById('langSwitch');
-const langBtn = document.getElementById('langBtn');
-const langMenu = document.getElementById('langMenu');
-const langFlag = document.getElementById('langFlag');
-const langCode = document.getElementById('langCode');
-
-function applyLanguage(lang){
-  LANG = lang;
-  const isRTL = RTL_LANGS.includes(lang);
-  document.documentElement.setAttribute('lang', lang);
-  document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-  langFlag.textContent = FLAGS[lang];
-  langCode.textContent = lang.toUpperCase();
-  document.querySelectorAll('.lang-opt').forEach(o=> o.classList.toggle('active', o.dataset.lang===lang));
-
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent = t(el.dataset.i18n); });
-  document.querySelectorAll('[data-i18n-html]').forEach(el=>{ el.innerHTML = t(el.dataset.i18nHtml); });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{ el.setAttribute('placeholder', t(el.dataset.i18nPlaceholder)); });
-
-  renderMarquee();
-  renderProducts(currentFilter, currentQuery);
-  renderCart();
-}
-
-langBtn.addEventListener('click', (e)=>{
-  e.stopPropagation();
-  langSwitch.classList.toggle('open');
-  langBtn.setAttribute('aria-expanded', langSwitch.classList.contains('open'));
-});
-document.addEventListener('click', ()=> langSwitch.classList.remove('open'));
-langMenu.addEventListener('click', (e)=>{
-  const opt = e.target.closest('.lang-opt');
-  if(!opt) return;
-  applyLanguage(opt.dataset.lang);
-  langSwitch.classList.remove('open');
-});
-applyLanguage('fr');
-
-/* ============== FORMULARIO FLOTANTE DE WHATSAPP ============== */
-const waFloatBtn = document.getElementById('waFloatBtn');
-const waFormCard = document.getElementById('waFormCard');
-const waOverlay = document.getElementById('waOverlay');
-const waFormClose = document.getElementById('waFormClose');
-const waFormSend = document.getElementById('waFormSend');
-
-function openWaForm(){
-  waFormCard.classList.add('open');
-  waOverlay.classList.add('open');
-  waFloatBtn.setAttribute('aria-expanded','true');
-}
-function closeWaForm(){
-  waFormCard.classList.remove('open');
-  waOverlay.classList.remove('open');
-  waFloatBtn.setAttribute('aria-expanded','false');
-}
-waFloatBtn.addEventListener('click', ()=> waFormCard.classList.contains('open') ? closeWaForm() : openWaForm());
-waFormClose.addEventListener('click', closeWaForm);
-waOverlay.addEventListener('click', closeWaForm);
-
-waFormSend.addEventListener('click', ()=>{
-  const nameInput = document.getElementById('waName');
-  const msgInput = document.getElementById('waMessage');
-  const name = nameInput.value.trim();
-  const message = msgInput.value.trim();
-
-  if(!name && !message){
-    const errEl = document.getElementById('waFormError');
-    errEl.textContent = t('wa.errorEmpty');
-    errEl.classList.add('show');
-    msgInput.classList.add('input-error');
-    msgInput.focus();
-    setTimeout(()=> msgInput.classList.remove('input-error'), 1200);
-    return;
-  }
-  document.getElementById('waFormError').classList.remove('show');
-
-  const parts = [t('ui.orderIntro').replace(/:$/,'')];
-  if(name) parts.push(`${t('wa.nameLabel')}: ${name}`);
-  parts.push(message || t('wa.msgPh'));
-  const text = parts.join('\n');
-  window.open(`https://wa.me/212666662509?text=${encodeURIComponent(text)}`, '_blank');
-  nameInput.value = '';
-  msgInput.value = '';
-  closeWaForm();
-});
-
-/* ============== NAV SCROLL / BURGER ============== */
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', ()=>{
-  header.classList.toggle('scrolled', window.scrollY > 60);
-});
-document.getElementById('burgerBtn').addEventListener('click', ()=>{
-  const links = document.querySelector('.nav-links');
-  const visible = links.style.display === 'flex';
-  links.style.cssText = visible ? '' : 'display:flex;position:absolute;top:100%;left:0;right:0;background:#0B1F3A;flex-direction:column;padding:20px 28px;gap:18px;';
-});
-</script>
-</body>
-</html>
+const loadStatus = document.getE
